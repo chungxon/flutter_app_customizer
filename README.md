@@ -46,3 +46,6 @@ Run the command
 ```bash
 sh configs/app_customizer.sh
 ```
+
+# Dependencies
+This repo depends on another repo https://github.com/chungxon/load_properties
