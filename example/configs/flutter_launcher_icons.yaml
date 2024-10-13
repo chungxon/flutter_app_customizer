@@ -1,18 +1,18 @@
 # flutter pub run flutter_launcher_icons
 flutter_launcher_icons:
-  image_path: "assets/icons/app_icon.png"
+  # image_path: "assets/icons/app_icon.png"
 
   android: "launcher_icon"
-  # image_path_android: "assets/icon/icon.png"
+  image_path_android: "assets/icons/app_icon.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
   # [Adaptive Icons](https://developer.android.com/develop/ui/views/launch/icon_design_adaptive#user-theming) will only be generated when both `adaptive_icon_background` and `adaptive_icon_foreground` are specified. (The `image_path` is not automatically taken as foreground)
-  # adaptive_icon_background: "assets/icon/background.png" # Or color "#ffffff"
-  # adaptive_icon_foreground: "assets/icon/foreground.png"
-  # adaptive_icon_foreground_inset: 16
-  # adaptive_icon_monochrome: "assets/icon/monochrome.png" # User themed icon with Android 13 (API level 33)
+  adaptive_icon_background: "#ffffff" # Or "assets/icon/background.png", only available for Android 8.0 devices and above
+  adaptive_icon_foreground: "assets/icons/app_icon.png" # Only available for Android 8.0 devices and above
+  # adaptive_icon_foreground_inset: 16 # Default 16, only available for Android 8.0 devices and above
+  # adaptive_icon_monochrome: "assets/icon/monochrome.png" # Themed icon, only available for Android 13 devices and above
 
   ios: true
-  # image_path_ios: "assets/icon/icon.png"
+  image_path_ios: "assets/icons/app_icon.png"
   remove_alpha_ios: true
   # image_path_ios_dark_transparent: "assets/icons/app_icon_transparent.png"
   # image_path_ios_tinted_grayscale: "assets/icons/app_icon_grayscale.png"
