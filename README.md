@@ -1,6 +1,12 @@
 # Flutter app customizer script
 Shell script used to update app name, package name and app icon
 
+# Features
+- [x] Update App Name for Android, iOS (Also support MacOS, Windows, Linux, Web)
+- [x] Generate App Icon for Android, iOS (Also support MacOS, Windows, Web but not for Linux)
+- [x] Update App Package Name/Bundle ID for Android, iOS
+- [x] Override your files and folders
+
 # Installation
 
 ## 1. Git Submodule
