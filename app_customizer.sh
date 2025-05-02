@@ -16,9 +16,11 @@ CONFIG_FILE="${SCRIPT_DIR}/configs.props"
 # Define `load_properties` file path
 LOAD_PROPERTIES="${SCRIPT_DIR}/load_properties.sh"
 
-# Download load_properties script
-curl -s https://raw.githubusercontent.com/chungxon/load_properties/refs/heads/master/scripts/load_properties.sh -o ${LOAD_PROPERTIES}
-# echo "Load properties file downloaded: ${LOAD_PROPERTIES}"
+# Download load_properties script if not exist
+if [ ! -f "${LOAD_PROPERTIES}" ]; then
+    curl -s https://raw.githubusercontent.com/chungxon/load_properties/refs/heads/master/scripts/load_properties.sh -o ${LOAD_PROPERTIES}
+    echo "Load properties file downloaded: ${LOAD_PROPERTIES}"
+fi
 
 # Source the load_properties script
 source ${LOAD_PROPERTIES}
@@ -45,7 +47,8 @@ fi
 # Navigate to project folder
 cd "${PROJECT_DIR}"
 
-# Install `flutter_launcher_icons` package to generate app icons
+# Install the latest `flutter_launcher_icons` package to generate app icons
+dart pub remove flutter_launcher_icons
 dart pub add dev:flutter_launcher_icons
 flutter pub get
 
@@ -85,7 +88,7 @@ rename setBundleId --targets android --value ${androidPackageName}
 #------------------------------------------------------------------------------------------#
 
 # Clean up
-rm ${LOAD_PROPERTIES}
+# rm ${LOAD_PROPERTIES}
 
 # Print success message
 # Adjusting the output for better alignment
