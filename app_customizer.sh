@@ -47,7 +47,8 @@ fi
 # Navigate to project folder
 cd "${PROJECT_DIR}"
 
-# Install `flutter_launcher_icons` package to generate app icons
+# Install the latest `flutter_launcher_icons` package to generate app icons
+dart pub remove flutter_launcher_icons
 dart pub add dev:flutter_launcher_icons
 flutter pub get
 
