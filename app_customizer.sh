@@ -65,13 +65,13 @@ dart run flutter_launcher_icons -f ${SCRIPT_DIR}/flutter_launcher_icons.yaml
 #------------------------------------------------------------------------------------------#
 
 #------------------------------------------------------------------------------------------#
-# # Install `change_app_package_name` package to change app package name
-# flutter pub add dev:change_app_package_name
-# flutter pub get
+# Install `change_app_package_name` package to change app package name
+flutter pub add dev:change_app_package_name
+flutter pub get
 
-# # Change package name
-# dart run change_app_package_name:main ${iosBundleId} --ios
-# dart run change_app_package_name:main ${androidPackageName} --android
+# Change package name
+dart run change_app_package_name:main ${iosBundleId} --ios
+dart run change_app_package_name:main ${androidPackageName} --android
 #------------------------------------------------------------------------------------------#
 
 #------------------------------------------------------------------------------------------#
@@ -82,9 +82,9 @@ flutter pub get
 # Rename app using `rename`
 rename setAppName --targets ios,android --value "${appName}" # --targets ios,android,macos,windows,linux,web
 
-# Change bundle ID
-rename setBundleId --targets ios --value ${iosBundleId}
-rename setBundleId --targets android --value ${androidPackageName}
+# # Change bundle ID (Not working as expected due to Extension problem - https://github.com/onatcipli/rename/issues/46)
+# rename setBundleId --targets ios --value ${iosBundleId}
+# rename setBundleId --targets android --value ${androidPackageName}
 #------------------------------------------------------------------------------------------#
 
 # Clean up
