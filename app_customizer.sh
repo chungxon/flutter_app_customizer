@@ -55,19 +55,26 @@ flutter pub get
 # Generating app icons
 dart run flutter_launcher_icons -f ${SCRIPT_DIR}/flutter_launcher_icons.yaml
 
+# For iOS, check if app name is longer than 12 characters and replace spaces with en space if needed
+iosAppName="${appName}"
+if [ ${#iosAppName} -gt 12 ]; then
+    # Replace spaces with en space (&#x2002;)
+    iosAppName=$(echo "${iosAppName}" | sed 's/ /\&#x2002;/g')
+    echo "iOS app name is longer than 12 characters. Spaces replaced with en space: ${iosAppName}"
+fi
+
 #------------------------------------------------------------------------------------------#
 # # Install `rename_app` package to rename app
 # flutter pub add dev:rename_app
 # flutter pub get
 
 # # Rename app
-# dart run rename_app:main all="${appName}" # android="Android Name" ios="IOS Name" web="Web Name" mac="Mac Name" windows="Windows Name" linux="Linux Name" others="Others Name"
+# dart run rename_app:main android="${appName}" ios="${iosAppName}"
 #------------------------------------------------------------------------------------------#
 
 #------------------------------------------------------------------------------------------#
 # Install `change_app_package_name` package to change app package name
 flutter pub add dev:change_app_package_name
-flutter pub get
 
 # Change package name
 dart run change_app_package_name:main ${iosBundleId} --ios
@@ -77,10 +84,10 @@ dart run change_app_package_name:main ${androidPackageName} --android
 #------------------------------------------------------------------------------------------#
 # Install `rename` package to rename app and change bundle ID
 flutter pub global activate rename
-flutter pub get
 
 # Rename app using `rename`
-rename setAppName --targets ios,android --value "${appName}" # --targets ios,android,macos,windows,linux,web
+rename setAppName --targets android --value "${appName}"
+rename setAppName --targets ios --value "${iosAppName}"
 
 # # Change bundle ID (Not working as expected due to Extension problem - https://github.com/onatcipli/rename/issues/46)
 # rename setBundleId --targets ios --value ${iosBundleId}
