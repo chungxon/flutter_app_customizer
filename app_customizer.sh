@@ -55,9 +55,12 @@ flutter pub get
 # Generating app icons
 dart run flutter_launcher_icons -f ${SCRIPT_DIR}/flutter_launcher_icons.yaml
 
+# Escape special characters for app name
+appNameEscaped=$(echo "${appName}" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g; s/'"'"'/\&apos;/g')
+
 # For iOS, check if app name is longer than 12 characters and replace spaces with en space if needed
-iosAppName="${appName}"
-if [ ${#iosAppName} -gt 12 ]; then
+iosAppName="${appNameEscaped}"
+if [ ${#appName} -gt 12 ]; then
     # Replace spaces with en space (&#x2002;)
     iosAppName=$(echo "${iosAppName}" | sed 's/ /\&#x2002;/g')
     echo "iOS app name is longer than 12 characters. Spaces replaced with en space: ${iosAppName}"
@@ -69,7 +72,7 @@ fi
 # flutter pub get
 
 # # Rename app
-# dart run rename_app:main android="${appName}" ios="${iosAppName}"
+# dart run rename_app:main android="${appNameEscaped}" ios="${iosAppName}"
 #------------------------------------------------------------------------------------------#
 
 #------------------------------------------------------------------------------------------#
@@ -86,7 +89,7 @@ dart run change_app_package_name:main ${androidPackageName} --android
 flutter pub global activate rename
 
 # Rename app using `rename`
-rename setAppName --targets android --value "${appName}"
+rename setAppName --targets android --value "${appNameEscaped}"
 rename setAppName --targets ios --value "${iosAppName}"
 
 # # Change bundle ID (Not working as expected due to Extension problem - https://github.com/onatcipli/rename/issues/46)
